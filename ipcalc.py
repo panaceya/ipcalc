@@ -762,7 +762,16 @@ class Network(IP):
         """
         return 2 ** ({4: 32, 6: 128}[self.version()] - self.mask)
 
+    def cidr(self):
+        """
+        Return CIDR of network.
 
+        >>> net = Network('192.0.2.0/22')
+        >>> print(net.cidr())
+        22
+        """
+        return self.mask
+        
 if __name__ == '__main__':
     tests = [
         ('192.168.114.42', 23, ['192.168.0.1', '192.168.114.128', '10.0.0.1']),
